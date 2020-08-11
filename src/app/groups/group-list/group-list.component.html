@@ -1,0 +1,17 @@
+<table class="table">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">stt</th>
+    <th scope="col">id</th>
+    <th scope="col">name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let group of groups; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{group.id}}</td>
+    <td>{{group.name}}</td>
+  </tr>
+  </tbody>
+</table>
+
