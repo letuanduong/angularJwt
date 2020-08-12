@@ -3,26 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {UsersModule} from "./users/users.module";
-import {GroupsModule} from "./groups/groups.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
-import {LoginComponent} from "./author/login/login.component";
+import { LoginComponent } from './login/login.component';
+import {JwtInterceptor} from "./helpsers/jwt.interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UsersModule,
-    GroupsModule,
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: JwtInterceptor }
+    ],
   exports: [],
   bootstrap: [AppComponent]
 })
