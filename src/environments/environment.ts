@@ -3,10 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  API_JWT: 'http://localhost:8080',
-  API_URL: 'http://localhost:8080/users',
-  API_URL_GROUP: 'http://localhost:8080/groups',
-  apiUrl: 'http://localhost:8080',
+  API_URL: 'http://localhost:8080',
   production: false
 
 };

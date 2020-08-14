@@ -12,56 +12,29 @@ import {AuthenticationService} from "../_service/authentication.service";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl: string;
-  error = '';
 
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService
-  ) {
-    // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
-  }
+          private formBuilder: FormBuilder,
+          private route: ActivatedRoute,
+          private router: Router,
+          private authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: [''],
+      password: ['']
     });
-
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  // convenience getter for easy access to form fields
-  get f() { return this.loginForm.controls; }
-
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    console.log(this.loginForm.value);
-    this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+  submit() {
+    this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password)
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.error = error;
-          this.loading = false;
-        });
+          this.router.navigate(['home']);
+        }
+      )
   }
 
 }
